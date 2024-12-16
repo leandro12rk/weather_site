@@ -4,6 +4,12 @@ import App from "./App";
 import  "./assets/styles/Styles.scss";
 import reportWebVitals from "./reportWebVitals";
 
+
+require('dotenv').config();
+
+console.log('Port:', process.env.PORT);
+
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
 

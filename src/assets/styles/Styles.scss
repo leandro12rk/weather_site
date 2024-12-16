@@ -1,2 +1,8 @@
 @import "var";
 @import "index";
+@import "./pages/home";
+@import "./components/navBar";
+@import "./components/container_weather_week";
+@import "./components/container_weather_actual";
+@import "./components/container_weather_day";
+@import "./components/container_weather_temperature";

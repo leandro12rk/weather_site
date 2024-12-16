@@ -16,6 +16,7 @@
     position: relative;
     padding: 1rem;
     z-index: 1000;
+    display: flex;
     &::before {
       content: "";
       z-index: -1;
