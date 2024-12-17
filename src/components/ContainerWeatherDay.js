@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function ContainerWeatherDay(){
-    return <div> container weather day</div>
+    return <div className="container-weather-day"> container weather day</div>
 }

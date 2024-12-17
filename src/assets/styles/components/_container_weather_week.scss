@@ -1,3 +1,5 @@
-.container-weather-week{
-    background-color: beige;
+.container-weather-week {
+  @extend .containers-home;
+  padding: 1rem;
+  flex: 1;
 }

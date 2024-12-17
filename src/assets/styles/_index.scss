@@ -17,6 +17,7 @@
     padding: 1rem;
     z-index: 1000;
     display: flex;
+    gap: 1rem;
     &::before {
       content: "";
       z-index: -1;
@@ -35,4 +36,8 @@
       height: 80.5vh;
     }
   }
+}
+.containers-home {
+  background-color: $Blanco_Nieve;
+  border-radius: 1rem;
 }

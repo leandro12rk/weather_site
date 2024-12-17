@@ -9,13 +9,13 @@ export default function SearchInput() {
   return (
     <div className="container-search-input">
       <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-        <InputLabel htmlFor="outlined-adornment-password">Search</InputLabel>
+        <InputLabel htmlFor="outlined-adornment-search">Search</InputLabel>
         <OutlinedInput
-          id="outlined-adornment-password"
+          id="outlined-adornment-search"
           type="search"
           endAdornment={
-            <InputAdornment position="end">
-              <IconButton edge="end">
+            <InputAdornment position="start">
+              <IconButton edge="start">
                 <SearchIcon />
               </IconButton>
             </InputAdornment>
