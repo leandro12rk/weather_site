@@ -1,3 +1,3 @@
-require('dotenv').config();
 
-console.log('Port:', process.env.PORT);
+
+//export default  API_WEATHER_KEY ;
