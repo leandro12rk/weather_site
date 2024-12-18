@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useEnv } from "../context/EnvContext";
 
+// import Swiper core and required modules
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// // Import Swiper styles
+// import 'swiper/css';
+// import 'swiper/css/navigation';
+// import 'swiper/css/pagination';
+// import 'swiper/css/scrollbar';
+
 export default function ContainerWeatherDay() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -36,23 +47,38 @@ export default function ContainerWeatherDay() {
 
   return (
     <div className="container-weather-day">
-      {data.forecast.forecastday.map((day) =>
-        day.hour.map((forecastData, index) => (
-          <div key={index} className="hourly-forecast">
-            <span>{forecastData.time}</span>
-            <br />
-            <span>{forecastData.temp_c}°C</span>
-            <span>
-              <img
-                src={forecastData.condition.icon}
-                className="img-fluid"
-                alt={forecastData.condition.text}
-              />
-              <span>{forecastData.condition.text}</span>
-            </span>
-          </div>
-        ))
-      )}
+      <h3>Weather Day</h3>
+      <Swiper
+        // install Swiper modules
+        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        spaceBetween={50}
+        slidesPerView={3}
+        navigation
+        pagination={{ clickable: true }}
+        scrollbar={{ draggable: true }}
+        onSwiper={(swiper) => console.log(swiper)}
+        onSlideChange={() => console.log("slide change")}>
+        {data.forecast.forecastday.map((day) =>
+          day.hour.map((forecastData, index) => (
+            <SwiperSlide>
+              <div key={index} className="hourly-forecast">
+                <span>Time:  {forecastData.time}</span>
+                <span>Temp:  {forecastData.temp_c}°C</span>
+                <span className="container-icon">
+                  <span>
+                    <img
+                      src={forecastData.condition.icon}
+                      className="img-fluid"
+                      alt={forecastData.condition.text}
+                    />
+                  </span>
+                  <span>{forecastData.condition.text}</span>
+                </span>
+              </div>
+            </SwiperSlide>
+          ))
+        )}
+      </Swiper>
     </div>
   );
 }

@@ -2,4 +2,19 @@
   @extend .containers-home;
   padding: 1rem;
   flex: 1;
+  h3{
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  .swiper {
+    max-height: 12rem;
+    .hourly-forecast {
+      display: flex;
+      flex-direction: column;
+      .container-icon {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
 }

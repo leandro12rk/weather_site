@@ -45,7 +45,7 @@ export default function ContainerWeatherActual() {
         <span>
           <img
             src={data.current.condition.icon}
-            className="img-fluid"
+            className=""
             alt={data.current.condition.text}
           />
           <br />

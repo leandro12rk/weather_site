@@ -11,8 +11,8 @@ export default function Home() {
       <div>
         <ContainerWeatherActual />
         <ContainerWeatherDay />
-        <ContainerWeatherTemperature />
       </div>
+        <ContainerWeatherTemperature />
       <ContainerWeatherWeek />
     </div>
   );
