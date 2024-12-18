@@ -1,5 +1,4 @@
 import React from "react";
-import Swiper from "./SwiperS";
 
 export default function ContainerWeatherTemperature() {
   return (

@@ -37,20 +37,19 @@ export default function ContainerWeatherActual() {
   return (
     <div className="container-weather-actual">
       <span>
-        <h1>Weather in {data.location.name}</h1>
+        <h1> {data.location.name}</h1>
         <p>{data.location.region}</p>
+        <p>Temperature: {data.current.temp_c}°C</p>
       </span>
       <span>
-        <p>Temperature: {data.current.temp_c}°C</p>
         <span>
           <img
             src={data.current.condition.icon}
             className=""
             alt={data.current.condition.text}
           />
-          <br />
-          {data.current.condition.text}
         </span>
+        <span>{data.current.condition.text}</span>
       </span>
     </div>
   );
