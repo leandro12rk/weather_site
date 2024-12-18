@@ -1,5 +1,7 @@
-.Container-weather-actual {
+.container-weather-actual {
   @extend .containers-home;
   padding: 1rem;
   flex: 1;
+  display: flex;
+  
 }
