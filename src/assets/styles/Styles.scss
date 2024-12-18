@@ -1,4 +1,11 @@
 @import "var";
+
+@import 'swiper/scss';
+@import 'swiper/scss/navigation';
+@import 'swiper/scss/pagination';
+
+@import './lib/swiper';
+
 @import "./lib/hamburguers";
 @import "index";
 @import "./pages/home";

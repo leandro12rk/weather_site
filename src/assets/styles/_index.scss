@@ -5,6 +5,7 @@
 .App {
   //background-color: $Azul_Marino;
   //background-image: url(https://i.pinimg.com/736x/c5/f3/31/c5f331770f86cd888bd2277d78fc0d90.jpg);
+  height: 100vh;
   background-image: url(https://i.pinimg.com/originals/f8/42/6b/f8426bf4f6892dfed16b2e0f583d5670.gif);
   background-repeat: no-repeat;
   background-size: cover;
@@ -12,7 +13,7 @@
     padding: 3rem;
   }
   .body-container {
-    width: 20rem;
+    //width: 20rem;
     position: relative;
     padding: 1rem;
     z-index: 1000;
@@ -40,4 +41,9 @@
 .containers-home {
   background-color: $Blanco_Nieve;
   border-radius: 1rem;
+}
+
+.img-fluid{
+  width: auto;
+  height: 100%;
 }
