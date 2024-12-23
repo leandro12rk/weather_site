@@ -2,18 +2,25 @@
   @extend .containers-home;
   padding: 1rem;
   flex: 1;
-  h3{
+  h3 {
     text-align: center;
     margin-bottom: 1rem;
   }
   .swiper {
     max-height: 12rem;
     .hourly-forecast {
+      padding: 0.5rem;
       display: flex;
       flex-direction: column;
+      &:hover,
+      &:focus {
+        background-color: darken($Blanco_Nieve, 0.5);
+        border-radius: 0.5rem;
+      }
       .container-icon {
         display: flex;
         flex-direction: column;
+        align-items: center;
       }
     }
   }

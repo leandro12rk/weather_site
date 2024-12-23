@@ -8,4 +8,19 @@
       color: $color_secondary;
     }
   }
+
+  .active {
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $Blanco_Nieve;
+      z-index: -1;
+      border-radius: .5rem;
+    }
+  }
 }
