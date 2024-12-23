@@ -5,7 +5,8 @@ import { useEnv } from "../context/EnvContext";
 import { Navigation, Pagination, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { compareDateWithNow } from "../utils/Function";
+import { getAllDataWeather } from "../API/Api_Weather";
+import {compareActualActiveTimeDate } from "../utils/Functions";
 export default function ContainerWeatherDay() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -15,21 +16,19 @@ export default function ContainerWeatherDay() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `${apiWeatherUrl}forecast.json?key=${apiWeatherKey}&q=${city}&days=1&aqi=yes&alerts=no`
+        const weatherData = await getAllDataWeather(
+          apiWeatherKey,
+          apiWeatherUrl,
+          city
         );
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const result = await response.json();
-        setData(result);
+        setData(weatherData);
       } catch (err) {
         setError(err.message);
       }
     };
-
     fetchData();
   }, [apiWeatherKey, apiWeatherUrl, city]);
+  //console.log(data);
 
   if (error) {
     return <div className="container-weather-day">Error: {error}</div>;
@@ -37,11 +36,18 @@ export default function ContainerWeatherDay() {
 
   if (!data || !data.forecast || !data.forecast.forecastday) {
     return <div className="container-weather-day">Loading...</div>; // Handle loading state or missing data
-  }  // Flatten the hours array to calculate the active slide index
+  }
+
+  // Flatten the hours array to calculate the active slide index
   const hours = data.forecast.forecastday.flatMap((day) => day.hour);
-  const activeIndex = hours.findIndex((forecastData) =>
-    compareDateWithNow(forecastData.time)
+  const activeIndex = hours.findIndex(
+    (forecastData) =>
+     compareActualActiveTimeDate(data.location.localtime,forecastData.time)
+
+      //data.location.localtime === forecastData.time
+
   );
+  console.info("hora actual "+data.location.localtime);
 
   return (
     <div className="container-weather-day">
@@ -51,19 +57,18 @@ export default function ContainerWeatherDay() {
         modules={[Navigation, Pagination, A11y]}
         spaceBetween={10}
         slidesPerView={3}
-        navigation
-        pagination={{ clickable: true }}
+        //navigation
+        //pagination={{ clickable: true }}
         initialSlide={activeIndex !== -1 ? activeIndex : 0} // Start at the active slide or the first slide
-        >
+      >
         {data.forecast.forecastday.map((day) =>
           day.hour.map((forecastData, index) => (
             <SwiperSlide>
               <div
                 key={index}
                 className={`hourly-forecast ${
-                  compareDateWithNow(forecastData.time)
-                    ? "active"
-                    : ""
+                  compareActualActiveTimeDate(data.location.localtime,forecastData.time)
+                  ? "active" : ""
                 } `}>
                 <span>Time: {forecastData.time}</span>
                 <span>Temp: {forecastData.temp_c}°C</span>
