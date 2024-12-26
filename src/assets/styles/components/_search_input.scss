@@ -1,0 +1,11 @@
+.container-search-input {
+  display: flex;
+
+  .MuiFormControl-root {
+    flex: 1;
+
+    @media (min-width: $min-width-lg) {
+      max-width: 40rem;
+    }
+  }
+}

@@ -1,13 +1,12 @@
 import React from "react";
 import { useEnv } from "../context/EnvContext";
 
-export default function Map({ longitude, latitude }) { 
+export default function Map({ longitude, latitude }) {
   const { apiMapKey } = useEnv();
   return (
-    <div>
+    <div className="container-map">
       <iframe
-        width="250"
-        height="250"
+      className="map"
         loading="lazy"
         allowFullScreen
         referrerPolicy="no-referrer-when-downgrade"

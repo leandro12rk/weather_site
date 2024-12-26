@@ -57,6 +57,24 @@ export default function ContainerWeatherDay() {
         modules={[Navigation, Pagination, A11y]}
         spaceBetween={10}
         slidesPerView={3}
+        breakpoints={{
+          320: {
+            slidesPerView: 1, // 1 slide visible en pantallas pequeñas
+            spaceBetween: 5,
+          },
+          640: {
+            slidesPerView: 2, // 2 slides visibles en pantallas medianas
+            spaceBetween: 10,
+          },
+          1024: {
+            slidesPerView: 3, // 3 slides visibles en pantallas grandes
+            spaceBetween: 15,
+          },
+          1440: {
+            slidesPerView: 4, // 4 slides visibles en pantallas muy grandes
+            spaceBetween: 20,
+          },
+        }}
         //navigation
         //pagination={{ clickable: true }}
         initialSlide={activeIndex !== -1 ? activeIndex : 0} // Start at the active slide or the first slide
