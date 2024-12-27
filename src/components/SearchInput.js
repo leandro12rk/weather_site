@@ -5,6 +5,7 @@ import InputLabel from "@mui/material/InputLabel";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import InputAdornment from "@mui/material/InputAdornment";
+import MapIcon from '@mui/icons-material/Map';
 export default function SearchInput() {
   return (
     <div className="container-search-input">
@@ -13,7 +14,7 @@ export default function SearchInput() {
         <OutlinedInput
           id="outlined-adornment-search"
           type="search"
-          endAdornment={
+          startAdornment={
             <InputAdornment position="start">
               <IconButton edge="start">
                 <SearchIcon />

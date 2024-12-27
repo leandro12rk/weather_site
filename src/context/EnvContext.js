@@ -9,6 +9,7 @@ export const EnvProvider = ({ children }) => {
         apiWeatherKey: process.env.REACT_APP_API_WEATHER_KEY,
         apiWeatherUrl: process.env.REACT_APP_API_WEATHER_URL,
         baseUrl: process.env.REACT_APP_BASE_URL,
+        apiMapKey:process.env.REACT_APP_API_MAPS_KEY
     };
 
     return (

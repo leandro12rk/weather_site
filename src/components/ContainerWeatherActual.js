@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useEnv } from "../context/EnvContext";
-
+import Loading from "./Loading";
 export default function ContainerWeatherActual() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -17,7 +17,10 @@ export default function ContainerWeatherActual() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const result = await response.json();
-        setData(result);
+
+        setTimeout(() => {
+          setData(result);
+        }, 5000);
       } catch (err) {
         setError(err.message);
       }
@@ -27,21 +30,26 @@ export default function ContainerWeatherActual() {
   }, [apiWeatherKey, apiWeatherUrl, city]);
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="container-weather-actual">Error: {error}</div>;
   }
 
   if (!data) {
-    return <div>Loading...</div>;
+    return (
+      <div className="container-weather-actual">
+        <Loading />
+      </div>
+    );
   }
 
   return (
     <div className="container-weather-actual">
-      <span>
+      <span className="container-text">
         <h1> {data.location.name}</h1>
         <p>{data.location.region}</p>
-        <p>Temperature: {data.current.temp_c}°C</p>
+        <p> {data.location.localtime}</p>
       </span>
-      <span>
+      <span className="container-icon">
+        <span>{data.current.condition.text}</span>
         <span>
           <img
             src={data.current.condition.icon}
@@ -49,7 +57,7 @@ export default function ContainerWeatherActual() {
             alt={data.current.condition.text}
           />
         </span>
-        <span>{data.current.condition.text}</span>
+        <span>Temperature: {data.current.temp_c}°C</span>
       </span>
     </div>
   );

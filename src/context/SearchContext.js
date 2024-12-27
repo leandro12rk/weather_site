@@ -7,15 +7,15 @@ export const SearchContext = createContext();
 export const SearchProvider = ({ children }) => {
   const [location, setLocation] = useState(() => {
     const storedLocation = localStorage.getItem("location");
-    return storedLocation || "es";
+    return storedLocation;
   });
 
   useEffect(() => {
     localStorage.setItem("location", location);
   }, [location]);
 
-  const toggleLocation = () => {
-    setLocation((prevLocation) => (prevLocation === "es" ? "en" : "es"));
+  const toggleLocation = (location) => {
+    setLocation(location);
   };
 
   return (
