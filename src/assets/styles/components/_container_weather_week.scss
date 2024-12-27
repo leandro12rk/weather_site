@@ -7,10 +7,30 @@
     font-weight: 600;
     margin-bottom: 1rem;
   }
-
+  .swiper {
+    &.swiper-lg {
+      display: none;
+      @media (min-width: $min-width-lg) {
+        display: block;
+        max-height: 25rem;
+        .swiper-wrapper {
+          .swiper-slide {
+            width: 100% !important;
+          }
+        }
+      }
+    }
+    &.swiper-sm {
+      display: block;
+      @media (min-width: $min-width-lg) {
+        display: none;
+      }
+    }
+  }
   .container-weather-week-item {
     display: flex;
     flex-direction: column;
+    padding: 0.5rem;
     align-items: center;
     .container-icon {
       display: flex;

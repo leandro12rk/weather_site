@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useEnv } from "../context/EnvContext";
 import { getAllDataWeather } from "../API/Api_Weather";
 import AirIcon from "@mui/icons-material/Air";
+import Loading from "./Loading";
 export default function ContainerWeatherTemperature() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -18,7 +19,10 @@ export default function ContainerWeatherTemperature() {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const result = await response.json();
-        setData(result);
+
+        setTimeout(() => {
+          setData(result);
+        }, 5000);
       } catch (err) {
         setError(err.message);
       }
@@ -32,7 +36,11 @@ export default function ContainerWeatherTemperature() {
   }
 
   if (!data) {
-    return <div className="container-weather-temperature">Loading...</div>;
+    return (
+      <div className="container-weather-temperature">
+        <Loading />
+      </div>
+    );
   }
   return (
     <div className="container-weather-temperature">

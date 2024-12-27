@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useEnv } from "../context/EnvContext";
-
+import Loading from "./Loading";
 // import Swiper core and required modules
 import { Navigation, Pagination, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { getAllDataWeather } from "../API/Api_Weather";
-import {compareActualActiveTimeDate } from "../utils/Functions";
+import { compareActualActiveTimeDate } from "../utils/Functions";
 export default function ContainerWeatherDay() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -21,7 +21,10 @@ export default function ContainerWeatherDay() {
           apiWeatherUrl,
           city
         );
-        setData(weatherData);
+
+        setTimeout(() => {
+          setData(weatherData);
+        }, 5000);
       } catch (err) {
         setError(err.message);
       }
@@ -35,19 +38,22 @@ export default function ContainerWeatherDay() {
   }
 
   if (!data || !data.forecast || !data.forecast.forecastday) {
-    return <div className="container-weather-day">Loading...</div>; // Handle loading state or missing data
+    return (
+      <div className="container-weather-day">
+        <Loading />
+      </div>
+    ); // Handle loading state or missing data
   }
 
   // Flatten the hours array to calculate the active slide index
   const hours = data.forecast.forecastday.flatMap((day) => day.hour);
   const activeIndex = hours.findIndex(
     (forecastData) =>
-     compareActualActiveTimeDate(data.location.localtime,forecastData.time)
+      compareActualActiveTimeDate(data.location.localtime, forecastData.time)
 
-      //data.location.localtime === forecastData.time
-
+    //data.location.localtime === forecastData.time
   );
-  console.info("hora actual "+data.location.localtime);
+  //console.info("hora actual " + data.location.localtime);
 
   return (
     <div className="container-weather-day">
@@ -85,8 +91,12 @@ export default function ContainerWeatherDay() {
               <div
                 key={index}
                 className={`hourly-forecast ${
-                  compareActualActiveTimeDate(data.location.localtime,forecastData.time)
-                  ? "active" : ""
+                  compareActualActiveTimeDate(
+                    data.location.localtime,
+                    forecastData.time
+                  )
+                    ? "active"
+                    : ""
                 } `}>
                 <span>Time: {forecastData.time}</span>
                 <span>Temp: {forecastData.temp_c}°C</span>
