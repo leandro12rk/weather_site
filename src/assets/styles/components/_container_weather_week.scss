@@ -2,6 +2,11 @@
   @extend .containers-home;
   padding: 1rem;
   flex: 1;
+  @media 
+  (min-width: $min-width-lg) {
+    max-width: 14rem;
+    
+  }
   h3 {
     font-size: 1.5rem;
     font-weight: 600;

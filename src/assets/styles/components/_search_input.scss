@@ -7,5 +7,9 @@
     @media (min-width: $min-width-lg) {
       max-width: 40rem;
     }
+    .css-4bojcr-MuiInputBase-root-MuiOutlinedInput-root {
+      background-color: $Blanco_Nieve;
+      border: none;
+    }
   }
 }
