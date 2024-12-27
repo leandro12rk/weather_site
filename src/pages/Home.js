@@ -25,7 +25,7 @@ export default function Home() {
         </div>
       </div>
 
-        <ContainerWeatherWeek />
+      <ContainerWeatherWeek />
 
       <Map longitude={-0.1062} latitude={51.5171} />
     </div>

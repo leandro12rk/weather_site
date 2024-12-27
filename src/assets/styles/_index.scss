@@ -19,8 +19,15 @@
   border-radius: 6px;
 }
 
+#root {
+  @media (min-width: $min-width-lg) {
+    height: 100vh;
+    display: flex;
+  }
 
+}
 .App {
+
   //background-color: $Azul_Marino;
   //background-image: url(https://i.pinimg.com/736x/c5/f3/31/c5f331770f86cd888bd2277d78fc0d90.jpg);
 
@@ -30,7 +37,7 @@
   padding: 1rem;
   @media (min-width: $min-width-lg) {
     padding: 3rem;
-    height: 100vh;
+    flex: 1;
   }
   .body-container {
     //width: 20rem;

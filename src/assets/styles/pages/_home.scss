@@ -2,13 +2,12 @@
   width: 100%;
   display: flex;
   gap: 1rem;
-
   flex-direction: column;
   @media (min-width: $min-width-lg) {
+    flex-wrap: wrap;
     flex-direction: row;
   }
 
- 
   .container-body-home {
     display: flex;
     flex-direction: column;

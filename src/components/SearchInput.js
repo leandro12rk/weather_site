@@ -1,29 +1,52 @@
-import React from "react";
-import FormControl from "@mui/material/FormControl";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import IconButton from "@mui/material/IconButton";
-import SearchIcon from "@mui/icons-material/Search";
-import InputAdornment from "@mui/material/InputAdornment";
-import MapIcon from '@mui/icons-material/Map';
+import React ,{useContext}from "react";
+import { SearchContext } from "../context/SearchContext"; 
 export default function SearchInput() {
+  const { searchTerm, setSearchTerm } = useContext(SearchContext);
+
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
   return (
     <div className="container-search-input">
-      <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-        <InputLabel htmlFor="outlined-adornment-search">Search</InputLabel>
-        <OutlinedInput
-          id="outlined-adornment-search"
-          type="search"
-          startAdornment={
-            <InputAdornment position="start">
-              <IconButton edge="start">
-                <SearchIcon />
-              </IconButton>
-            </InputAdornment>
-          }
-          label="Search"
+      <form class="form">
+        <button>
+          <svg
+            width="17"
+            height="16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-labelledby="search">
+            <path
+              d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
+              stroke="currentColor"
+              stroke-width="1.333"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </button>
+        <input
+          class="input"
+          placeholder="Type your text"
+          required=""
+          type="text"
         />
-      </FormControl>
+        <button class="reset" type="reset">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </form>
     </div>
   );
 }

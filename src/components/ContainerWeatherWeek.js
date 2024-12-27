@@ -49,10 +49,10 @@ export default function ContainerWeatherWeek() {
   const dates = data.forecast.forecastday.flatMap((day) => day.date);
   //console.log("dates: " + dates);
 
-  const activeIndex = dates.findIndex((forecastData) =>
+  let activeIndex = dates.findIndex((forecastData) =>
     compareActualActiveDate(forecastData, data.location.localtime)
   );
-
+  //console.log(activeIndex);
   return (
     <div className="container-weather-week">
       <h3>Weather Week</h3>
@@ -100,7 +100,7 @@ function SwiperSm({ activeIndex, data }) {
                 data.location.localtime
               )
                 ? "active"
-                : ""
+                : "no-active"
             } `}
             key={index}>
             {forecastData.date}
@@ -120,6 +120,7 @@ function SwiperSm({ activeIndex, data }) {
     </Swiper>
   );
 }
+
 function SwiperLg({ activeIndex, data }) {
   return (
     <Swiper
