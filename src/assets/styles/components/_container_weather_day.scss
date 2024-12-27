@@ -29,5 +29,11 @@
         align-items: center;
       }
     }
+    .swiper-scrollbar {
+      display: none;
+      @media(min-width: $min-width-lg) {
+        display: block;
+      }
+    }
   }
 }
