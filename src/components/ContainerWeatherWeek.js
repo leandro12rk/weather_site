@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useEnv } from "../context/EnvContext";
 import Loading from "./Loading";
 // import Swiper core and required modules
-import { Navigation, Pagination, A11y } from "swiper/modules";
+import { Navigation, Pagination, A11y, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { getDataWeek } from "../API/Api_Weather";
@@ -49,16 +49,16 @@ export default function ContainerWeatherWeek() {
   const dates = data.forecast.forecastday.flatMap((day) => day.date);
   //console.log("dates: " + dates);
 
-  const activeIndex = dates.findIndex((forecastData) =>
-    compareActualActiveDate(forecastData,data.location.localtime)
+  let activeIndex = dates.findIndex((forecastData) =>
+    compareActualActiveDate(forecastData, data.location.localtime)
   );
-
+  //console.log(activeIndex);
   return (
     <div className="container-weather-week">
       <h3>Weather Week</h3>
 
       <SwiperSm activeIndex={activeIndex} data={data} />
-      <SwiperLg activeIndex={activeIndex} data={data}/>
+      <SwiperLg activeIndex={activeIndex} data={data} />
     </div>
   );
 }
@@ -95,7 +95,12 @@ function SwiperSm({ activeIndex, data }) {
         <SwiperSlide>
           <div
             className={`container-weather-week-item ${
-              compareActualActiveDate(forecastData.date,data.location.localtime) ? "active" : ""
+              compareActualActiveDate(
+                forecastData.date,
+                data.location.localtime
+              )
+                ? "active"
+                : "no-active"
             } `}
             key={index}>
             {forecastData.date}
@@ -115,12 +120,14 @@ function SwiperSm({ activeIndex, data }) {
     </Swiper>
   );
 }
+
 function SwiperLg({ activeIndex, data }) {
   return (
     <Swiper
       // install Swiper modules
       className="swiper-lg"
-      modules={[Navigation, Pagination, A11y]}
+      modules={[Navigation, Pagination, Scrollbar, A11y]}
+      scrollbar={{ draggable: true }}
       spaceBetween={10}
       slidesPerView={3}
       direction="vertical"
@@ -148,7 +155,12 @@ function SwiperLg({ activeIndex, data }) {
         <SwiperSlide>
           <div
             className={`container-weather-week-item ${
-              compareActualActiveDate(forecastData.date,data.location.localtime) ? "active" : ""
+              compareActualActiveDate(
+                forecastData.date,
+                data.location.localtime
+              )
+                ? "active"
+                : ""
             } `}
             key={index}>
             {forecastData.date}

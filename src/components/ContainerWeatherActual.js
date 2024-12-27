@@ -46,7 +46,7 @@ export default function ContainerWeatherActual() {
       <span className="container-text">
         <h1> {data.location.name}</h1>
         <p>{data.location.region}</p>
-        <p> {data.location.localtime}</p>
+        <p className="text-local-time"> {data.location.localtime}</p>
       </span>
       <span className="container-icon">
         <span>{data.current.condition.text}</span>

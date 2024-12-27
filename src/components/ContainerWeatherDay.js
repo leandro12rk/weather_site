@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useEnv } from "../context/EnvContext";
 import Loading from "./Loading";
 // import Swiper core and required modules
-import { Navigation, Pagination, A11y } from "swiper/modules";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { getAllDataWeather } from "../API/Api_Weather";
@@ -60,9 +60,10 @@ export default function ContainerWeatherDay() {
       <h3>Weather Day</h3>
       <Swiper
         // install Swiper modules
-        modules={[Navigation, Pagination, A11y]}
+        modules={[Navigation, Pagination, Scrollbar, A11y]}
         spaceBetween={10}
         slidesPerView={3}
+        scrollbar={{ draggable: true }}
         breakpoints={{
           320: {
             slidesPerView: 1, // 1 slide visible en pantallas pequeñas

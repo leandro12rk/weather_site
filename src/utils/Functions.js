@@ -20,14 +20,14 @@ export const compareActualActiveTimeDate = (
   );
 };
 
-export const compareActualActiveDate = (InputCurrenteDate,InputActiveDate) => {
+export const compareActualActiveDate = (InputCurrenteDate, InputActiveDate) => {
   const activeDate = new Date(InputActiveDate);
   const currenteDate = new Date(InputCurrenteDate);
 
-  // Validar si la fecha ingresada es válida
-  if (isNaN(activeDate.getTime()) && isNaN(InputCurrenteDate.getTime())) {
-    return false; // Fecha no válida
-  }
+  // Convertir a formato ISO y tomar solo la parte de la fecha
+  const date1 = activeDate.toISOString().split('T')[0];
+  const date2 = currenteDate.toISOString().split('T')[0];
 
-  return activeDate.getDay() === currenteDate.getDay();
+  // Comparar las fechas
+  return date1 === date2;
 };

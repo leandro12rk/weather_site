@@ -1,28 +1,15 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from 'react';
 
 // Crear el contexto
 export const SearchContext = createContext();
 
-// Crear un proveedor de contexto
+// Proveedor del contexto
 export const SearchProvider = ({ children }) => {
-  const [location, setLocation] = useState(() => {
-    const storedLocation = localStorage.getItem("location");
-    return storedLocation;
-  });
-
-  useEffect(() => {
-    localStorage.setItem("location", location);
-  }, [location]);
-
-  const toggleLocation = (location) => {
-    setLocation(location);
-  };
+  const [searchTerm, setSearchTerm] = useState('');
 
   return (
-    <SearchContext.Provider value={{ location, toggleLocation }}>
+    <SearchContext.Provider value={{ searchTerm, setSearchTerm }}>
       {children}
     </SearchContext.Provider>
   );
 };
-
-
