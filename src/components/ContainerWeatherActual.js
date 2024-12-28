@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useEnv } from "../context/EnvContext";
 import Loading from "./Loading";
+import { getDataWeatherActual } from "../API/Api_Weather";
 export default function ContainerWeatherActual() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -10,17 +11,15 @@ export default function ContainerWeatherActual() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `${apiWeatherUrl}current.json?key=${apiWeatherKey}&q=${city}&aqi=no`
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const result = await response.json();
-
-        setTimeout(() => {
-          setData(result);
-        }, 5000);
+          const weatherData = await getDataWeatherActual(
+                 apiWeatherKey,
+                 apiWeatherUrl,
+                 city
+               );
+       
+           setTimeout(() => {
+             setData(weatherData );
+           }, 5000);
       } catch (err) {
         setError(err.message);
       }

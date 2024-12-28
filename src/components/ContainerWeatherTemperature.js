@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useEnv } from "../context/EnvContext";
-import { getAllDataWeather } from "../API/Api_Weather";
+import { getDataTemperature } from "../API/Api_Weather";
 import AirIcon from "@mui/icons-material/Air";
 import Loading from "./Loading";
 export default function ContainerWeatherTemperature() {
@@ -12,16 +12,14 @@ export default function ContainerWeatherTemperature() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `${apiWeatherUrl}current.json?key=${apiWeatherKey}&q=${city}&aqi=no`
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const result = await response.json();
-
+       const weatherData = await getDataTemperature(
+              apiWeatherKey,
+              apiWeatherUrl,
+              city
+            );
+    
         setTimeout(() => {
-          setData(result);
+          setData(weatherData );
         }, 5000);
       } catch (err) {
         setError(err.message);

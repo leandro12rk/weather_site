@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useEnv } from "../context/EnvContext";
 import Loading from "./Loading";
+import { getDataWeek } from "../API/Api_Weather";
+import { compareActualActiveDate } from "../utils/Functions";
+
+
 // import Swiper core and required modules
 import { Navigation, Pagination, A11y, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { getDataWeek } from "../API/Api_Weather";
-import { compareActualActiveDate } from "../utils/Functions";
 export default function ContainerWeatherWeek() {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);

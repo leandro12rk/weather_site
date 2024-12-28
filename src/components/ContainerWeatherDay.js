@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useEnv } from "../context/EnvContext";
 import Loading from "./Loading";
 // import Swiper core and required modules
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { SearchContext } from "../context/SearchContext";
 
 import { getAllDataWeather } from "../API/Api_Weather";
 import { compareActualActiveTimeDate } from "../utils/Functions";
 export default function ContainerWeatherDay() {
   const [data, setData] = useState(null);
+  const { searchTerm } = useContext(SearchContext);
+
   const [error, setError] = useState(null);
   const { apiWeatherKey, apiWeatherUrl } = useEnv();
   const city = "London";
