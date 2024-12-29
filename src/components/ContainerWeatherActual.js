@@ -11,15 +11,15 @@ export default function ContainerWeatherActual() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-          const weatherData = await getDataWeatherActual(
-                 apiWeatherKey,
-                 apiWeatherUrl,
-                 city
-               );
-       
-           setTimeout(() => {
-             setData(weatherData );
-           }, 5000);
+        const weatherData = await getDataWeatherActual(
+          apiWeatherKey,
+          apiWeatherUrl,
+          city
+        );
+
+        setTimeout(() => {
+          setData(weatherData);
+        }, 5000);
       } catch (err) {
         setError(err.message);
       }

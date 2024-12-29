@@ -1,10 +1,11 @@
 .container-search-input {
   display: flex;
+  margin-bottom: 1rem;
+  max-width: 40rem;
 
-  /* From Uiverse.io by satyamchaudharydev */
-  /* From uiverse.io by @satyamchaudharydev */
-  /* removing default style of button */
-
+  form {
+    flex: 1;
+  }
   .form button {
     border: none;
     background: none;
@@ -19,7 +20,6 @@
     --input-bg: #fff;
     --border-color: #2f2ee9;
     --border-radius: 30px;
-    --after-border-radius: 1px;
     position: relative;
     width: var(--width-of-input);
     height: var(--height-of-input);
@@ -28,7 +28,7 @@
     padding-inline: 0.8em;
     border-radius: var(--border-radius);
     transition: border-radius 0.5s ease;
-    background: var(--input-bg, #fff);
+    background: $Blanco_Nieve;
   }
   /* styling of Input */
   .input {

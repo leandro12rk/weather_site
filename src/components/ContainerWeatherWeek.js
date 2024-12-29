@@ -4,7 +4,6 @@ import Loading from "./Loading";
 import { getDataWeek } from "../API/Api_Weather";
 import { compareActualActiveDate } from "../utils/Functions";
 
-
 // import Swiper core and required modules
 import { Navigation, Pagination, A11y, Scrollbar } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -65,36 +64,55 @@ export default function ContainerWeatherWeek() {
   );
 }
 
+function breakpoints() {
+  return {
+    320: {
+      slidesPerView: 2,
+      spaceBetween: 5,
+    },
+    640: {
+      slidesPerView: 4,
+      spaceBetween: 10,
+    },
+    1024: {
+      slidesPerView: 3,
+      spaceBetween: 10,
+    },
+    1440: {
+      slidesPerView: 3,
+      spaceBetween: 10,
+    },
+  };
+}
+
 function SwiperSm({ activeIndex, data }) {
   return (
     <Swiper
-      // install Swiper modules
       className="swiper-sm"
       modules={[Navigation, Pagination, A11y]}
       spaceBetween={10}
       slidesPerView={3}
       breakpoints={{
         320: {
-          slidesPerView: 2, // 1 slide visible en pantallas pequeñas
+          slidesPerView: 2,
           spaceBetween: 5,
         },
         640: {
-          slidesPerView: 4, // 2 slides visibles en pantallas medianas
+          slidesPerView: 4,
           spaceBetween: 10,
         },
         1024: {
-          slidesPerView: 3, // 3 slides visibles en pantallas grandes
+          slidesPerView: 3,
           spaceBetween: 10,
         },
         1440: {
-          slidesPerView: 3, // 4 slides visibles en pantallas muy grandes
+          slidesPerView: 3,
           spaceBetween: 10,
         },
       }}
-      initialSlide={activeIndex !== -1 ? activeIndex : 0} // Start at the active slide or the first slide
-    >
+      initialSlide={activeIndex !== -1 ? activeIndex : 0}>
       {data.forecast.forecastday.map((forecastData, index) => (
-        <SwiperSlide>
+        <SwiperSlide key={index}>
           <div
             className={`container-weather-week-item ${
               compareActualActiveDate(
@@ -103,8 +121,7 @@ function SwiperSm({ activeIndex, data }) {
               )
                 ? "active"
                 : "no-active"
-            } `}
-            key={index}>
+            } `}>
             {forecastData.date}
             <span className="container-icon">
               <span>
@@ -122,39 +139,11 @@ function SwiperSm({ activeIndex, data }) {
     </Swiper>
   );
 }
-
-function SwiperLg({ activeIndex, data }) {
+function SwiperSlideData({ data }) {
   return (
-    <Swiper
-      // install Swiper modules
-      className="swiper-lg"
-      modules={[Navigation, Pagination, Scrollbar, A11y]}
-      scrollbar={{ draggable: true }}
-      spaceBetween={10}
-      slidesPerView={3}
-      direction="vertical"
-      breakpoints={{
-        320: {
-          slidesPerView: 2, // 1 slide visible en pantallas pequeñas
-          spaceBetween: 5,
-        },
-        640: {
-          slidesPerView: 4, // 2 slides visibles en pantallas medianas
-          spaceBetween: 10,
-        },
-        1024: {
-          slidesPerView: 3, // 3 slides visibles en pantallas grandes
-          spaceBetween: 10,
-        },
-        1440: {
-          slidesPerView: 3, // 4 slides visibles en pantallas muy grandes
-          spaceBetween: 10,
-        },
-      }}
-      initialSlide={activeIndex !== -1 ? activeIndex : 0} // Start at the active slide or the first slide
-    >
+    <>
       {data.forecast.forecastday.map((forecastData, index) => (
-        <SwiperSlide>
+        <SwiperSlide key={index}>
           <div
             className={`container-weather-week-item ${
               compareActualActiveDate(
@@ -163,8 +152,63 @@ function SwiperLg({ activeIndex, data }) {
               )
                 ? "active"
                 : ""
-            } `}
-            key={index}>
+            } `}>
+            {forecastData.date}
+            <span className="container-icon">
+              <span>
+                <img
+                  src={forecastData.day.condition.icon}
+                  className="img-fluid"
+                  alt={forecastData.day.condition.text}
+                />
+              </span>
+              <span>{forecastData.day.condition.text}</span>
+            </span>
+          </div>
+        </SwiperSlide>
+      ))}
+    </>
+  );
+}
+function SwiperLg({ activeIndex, data }) {
+  return (
+    <Swiper
+      className="swiper-lg"
+      modules={[Navigation, Pagination, Scrollbar, A11y]}
+      scrollbar={{ draggable: true }}
+      spaceBetween={10}
+      slidesPerView={3}
+      direction="vertical"
+      breakpoints={{
+        320: {
+          slidesPerView: 2,
+          spaceBetween: 5,
+        },
+        640: {
+          slidesPerView: 4,
+          spaceBetween: 10,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 10,
+        },
+        1440: {
+          slidesPerView: 3,
+          spaceBetween: 10,
+        },
+      }}
+      initialSlide={activeIndex !== -1 ? activeIndex : 0}>
+      {data.forecast.forecastday.map((forecastData, index) => (
+        <SwiperSlide key={index}>
+          <div
+            className={`container-weather-week-item ${
+              compareActualActiveDate(
+                forecastData.date,
+                data.location.localtime
+              )
+                ? "active"
+                : "no-active"
+            } `}>
             {forecastData.date}
             <span className="container-icon">
               <span>
